@@ -1,0 +1,54 @@
+show databases;
+
+#UC1 create database for addressbook
+create database Addressbook_Service;
+
+#UC2 create address book table with its attributes
+create table addressbook
+(
+	FirstName varchar(20) not null,
+    LastName varchar(20) not null,
+	Address varchar(50) not null,
+    City varchar(20) not null,
+    State varchar(20) not null,
+	Zip varchar(6) not null,
+    PhoneNo varchar(12) not null,
+    Email_ID char(50) not null
+);
+describe addressbook;
+
+#UC3 Ability to insert new Contact to Addressbook
+INSERT INTO addressbook(FirstName, LastName, Address, City, State, Zip, PhoneNo, Email_ID)
+	VALUES ('Bhuvana', 'Chandra', 'Betamcherla', 'Kurnool', 'Andhra Pradesh', '518599', '9391173347', 'bhuvanachandra26@gmail.com');
+INSERT INTO addressbook(FirstName, LastName, Address, City, State, Zip, PhoneNo, Email_ID)
+	VALUES ('Guru', 'Prasad', 'Kagepeta', 'Kadapa', 'Andhra Pradesh', '518525', '8886329322', 'gnanak@gmail.com');
+select * from addressbook;
+
+#UC4 Ability to edit contact using first name    
+update addressbook set
+					Address='Old Bus Stand',
+                    City='Anantapur',
+                    Zip='512600',
+                    PhoneNo='9876543210',
+                    Email_ID='murali@gmail.com'
+				where FirstName='Bhuvana';
+select * from addressbook;
+
+#UC5 Ability to delete contact using person's name
+delete from addressbook where FirstName='Guru';
+select * from addressbook;
+
+#UC6 ability to retrive person belonging to city or state from addressbook
+select * from addressbook where City = 'Anantapur';
+ select * from addressbook where State = 'Andhra Pradesh';
+ 
+ #UC7
+#getting the count in addressbook by  city name
+ select City,count(*) from addressbook where City = 'Anantapur';
+ 
+  #getting the count in addressbook by  state name
+ select State,count(*) from addressbook where State = 'Andhra Pradesh'; 
+ 
+ #UC8 showing addressbook sorted alphabeticaly by name
+ select * from addressbook where city = 'Anantapur' order by FirstName;
+ 
